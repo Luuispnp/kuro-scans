@@ -7,19 +7,21 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface MangaMapper {
 
     MangaResponse toMangaResponse(Manga manga);
 
+    List<MangaResponse> toMangaResponse(List<Manga> mangas);
+
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "genres", ignore = true)
     Manga mangaRequestToManga(MangaRequest mangaRequest);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "genres", ignore = true)
     void updateManga(MangaRequest mangaRequest, @MappingTarget Manga manga);
 
 }
